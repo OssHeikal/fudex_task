@@ -1,0 +1,24 @@
+{
+  "addons": [
+    {
+      "name": "Colors",
+      "options": ["#FF0000", "#0000FF", "#008000", "#000000", "#FFFFFF"],
+      "inputType": "colorPicker"
+    },
+    {
+      "name": "Sizes",
+      "options": ["S", "M", "L", "XL", "XXL"],
+      "inputType": "dropdown"
+    },
+    {
+      "name": "Condition",
+      "options": ["New", "Used", "Refurbished"],
+      "inputType": "radio"
+    },
+    {
+      "name": "Age Group",
+      "options": ["Kids", "Teenagers", "Adults", "Seniors"],
+      "inputType": "checkbox"
+    }
+  ]
+}

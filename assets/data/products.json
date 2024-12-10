@@ -1,0 +1,119 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Leather Handbag",
+      "price": 300.0,
+      "currency": "SAR",
+      "mainCategory": "Bags",
+      "subCategory": "Handbags",
+      "description": "A stylish leather handbag perfect for everyday use.",
+      "images": ["handbag1.jpg", "handbag2.jpg", "handbag3.jpg"],
+      "addOns": [
+        {
+          "name": "Colors",
+          "options": ["#FF0000", "#0000FF", "#8B4513"],
+          "inputType": "colorPicker"
+        },
+        {
+          "name": "Sizes",
+          "options": ["S", "M", "L"],
+          "inputType": "dropdown"
+        },
+        {
+          "name": "Condition",
+          "options": ["New", "Used"],
+          "inputType": "radio"
+        }
+      ],
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "name": "Men's Running Shoes",
+      "price": 150.0,
+      "currency": "SAR",
+      "mainCategory": "Shoes",
+      "subCategory": "Sportswear",
+      "description": "Comfortable running shoes for daily training.",
+      "images": ["shoes1.jpg", "shoes2.jpg"],
+      "addOns": [
+        {
+          "name": "Sizes",
+          "options": ["40", "41", "42", "43", "44"],
+          "inputType": "dropdown"
+        },
+        {
+          "name": "Colors",
+          "options": ["#FFFFFF", "#000000", "#FF4500"],
+          "inputType": "colorPicker"
+        }
+      ],
+      "status": "Active"
+    },
+    {
+      "id": 3,
+      "name": "Smart Watch",
+      "price": 500.0,
+      "currency": "SAR",
+      "mainCategory": "Electronics",
+      "subCategory": "Wearables",
+      "description": "A feature-packed smartwatch for fitness and productivity.",
+      "images": ["watch1.jpg", "watch2.jpg", "watch3.jpg"],
+      "addOns": [
+        {
+          "name": "Strap Color",
+          "options": ["#000000", "#D2B48C", "#708090"],
+          "inputType": "colorPicker"
+        },
+        {
+          "name": "Condition",
+          "options": ["New", "Refurbished"],
+          "inputType": "radio"
+        }
+      ],
+      "status": "Active"
+    },
+    {
+      "id": 4,
+      "name": "Kids Backpack",
+      "price": 120.0,
+      "currency": "SAR",
+      "mainCategory": "Bags",
+      "subCategory": "Backpacks",
+      "description": "Lightweight and durable backpack for kids.",
+      "images": ["backpack1.jpg", "backpack2.jpg"],
+      "addOns": [
+        {
+          "name": "Colors",
+          "options": ["#FF69B4", "#1E90FF", "#FFD700"],
+          "inputType": "colorPicker"
+        },
+        {
+          "name": "Age Group",
+          "options": ["Kids", "Teenagers"],
+          "inputType": "checkbox"
+        }
+      ],
+      "status": "Active"
+    },
+    {
+      "id": 5,
+      "name": "Wooden Coffee Table",
+      "price": 800.0,
+      "currency": "SAR",
+      "mainCategory": "Furniture",
+      "subCategory": "Living Room",
+      "description": "Minimalist wooden coffee table with a natural finish.",
+      "images": ["table1.jpg", "table2.jpg"],
+      "addOns": [
+        {
+          "name": "Wood Finish",
+          "options": ["Natural", "Dark Brown", "Black"],
+          "inputType": "dropdown"
+        }
+      ],
+      "status": "Active"
+    }
+  ]
+}
