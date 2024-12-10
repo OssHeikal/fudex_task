@@ -2,6 +2,10 @@ import 'package:equatable/equatable.dart';
 
 import '../../core/resources/enums/addon_type_enum.dart';
 
+List<AddonModel> addonModelFromJson(dynamic json) {
+  return (json['data'] as List).map((e) => AddonModel.fromJson(e)).toList();
+}
+
 class AddonModel extends Equatable {
   final String name;
   final List<String> options;

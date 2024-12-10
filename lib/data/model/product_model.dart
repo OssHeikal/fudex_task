@@ -4,7 +4,11 @@ import 'package:fudex/data/model/addon_model.dart';
 import '../../core/resources/enums/products_status_enum.dart';
 import 'category_model.dart';
 
-class ProductsModel extends Equatable {
+List<ProductModel> productModelFromJson(dynamic json) {
+  return (json['data'] as List).map((e) => ProductModel.fromJson(e)).toList();
+}
+
+class ProductModel extends Equatable {
   final int id;
   final String name;
   final String description;
@@ -16,7 +20,7 @@ class ProductsModel extends Equatable {
   final CategoryModel subCategory;
   final ProductsStatus status;
 
-  const ProductsModel({
+  const ProductModel({
     required this.id,
     required this.name,
     required this.description,
@@ -29,8 +33,8 @@ class ProductsModel extends Equatable {
     required this.status,
   });
 
-  factory ProductsModel.fromJson(Map<String, dynamic> json) {
-    return ProductsModel(
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
       id: json['id'] as int,
       name: json['name'] as String,
       description: json['description'] as String,
@@ -44,7 +48,7 @@ class ProductsModel extends Equatable {
     );
   }
 
-  const ProductsModel.empty()
+  const ProductModel.empty()
       : id = 0,
         name = '',
         description = '',
