@@ -1,9 +1,14 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-import '../resources/cubit_status.dart';
-import 'all_extensions.dart';
+import '../../extensions/all_extensions.dart';
+import '../../widgets/custom_loading.dart';
 
-extension CubitStatusEx on CubitStatus {
+enum CubitStatus {
+  loading,
+  success,
+  failed,
+  init;
+
   Widget build({
     Widget? onInit,
     Widget? onLoading,
@@ -15,7 +20,7 @@ extension CubitStatusEx on CubitStatus {
       case CubitStatus.init:
         return onInit ?? const SizedBox.shrink();
       case CubitStatus.loading:
-        return enableLoading ? onLoading ?? const CupertinoActivityIndicator().center() : onSuccess;
+        return enableLoading ? onLoading ?? const CustomLoading() : onSuccess;
       case CubitStatus.success:
         return onSuccess;
       case CubitStatus.failed:
