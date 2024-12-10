@@ -6,18 +6,18 @@ import 'package:injectable/injectable.dart';
 import '../../core/utils/error_handler.dart';
 import '../datasource/datasource.dart';
 
-abstract class Repositories {
+abstract class Repository {
   DataResponse<List<ProductModel>> getProducts();
   DataResponse<List<CategoryModel>> getMainCategories();
   DataResponse<List<CategoryModel>> getSubCategories(int id);
   DataResponse<List<AddonModel>> getAddOns();
 }
 
-@LazySingleton(as: Repositories)
-class RepositoriesImpl implements Repositories {
+@LazySingleton(as: Repository)
+class RepositoryImpl implements Repository {
   final Datasource datasource;
 
-  RepositoriesImpl(this.datasource);
+  RepositoryImpl(this.datasource);
 
   @override
   DataResponse<List<ProductModel>> getProducts() async {

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 
-typedef DataResponse<T> = Future<Either<Exception, T>>;
+typedef DataResponse<T> = Future<Either<Failure, T>>;
 typedef FromJson<T> = T Function(Map<String, dynamic> body);
 
 extension HandleError on Future<dynamic> {
@@ -11,7 +11,17 @@ extension HandleError on Future<dynamic> {
       final response = await this;
       return Right(f(jsonDecode(response)));
     } catch (e) {
-      return Left(e as Exception);
+      final Failure failure = Failure(e.toString());
+      return Left(failure);
     }
   }
+}
+
+class Failure implements Exception {
+  final String message;
+
+  Failure(this.message);
+
+  @override
+  String toString() => message;
 }
