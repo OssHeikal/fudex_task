@@ -1,0 +1,20 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Bags"
+    },
+    {
+      "id": 2,
+      "name": "Shoes"
+    },
+    {
+      "id": 3,
+      "name": "Electronics"
+    },
+    {
+      "id": 4,
+      "name": "Furniture"
+    }
+  ]
+}

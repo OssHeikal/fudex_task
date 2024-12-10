@@ -1,23 +1,21 @@
 {
-  "products": [
+  "data": [
     {
       "id": 1,
       "name": "Leather Handbag",
-      "price": 300.0,
-      "currency": "SAR",
-      "mainCategory": "Bags",
-      "subCategory": "Handbags",
       "description": "A stylish leather handbag perfect for everyday use.",
-      "images": ["handbag1.jpg", "handbag2.jpg", "handbag3.jpg"],
+      "price": 300.0,
+      "mainImage": "handbag_main.jpg",
+      "secondaryImages": ["handbag_side.jpg", "handbag_interior.jpg"],
       "addOns": [
         {
           "name": "Colors",
-          "options": ["#FF0000", "#0000FF", "#8B4513"],
+          "options": ["#FF5733", "#C70039", "#900C3F"],
           "inputType": "colorPicker"
         },
         {
           "name": "Sizes",
-          "options": ["S", "M", "L"],
+          "options": ["Small", "Medium", "Large"],
           "inputType": "dropdown"
         },
         {
@@ -26,93 +24,145 @@
           "inputType": "radio"
         }
       ],
+      "mainCategory": {
+        "id": 1,
+        "name": "Bags"
+      },
+      "subCategory": {
+        "id": 1,
+        "name": "Handbags",
+        "mainCategoryId": 1
+      },
       "status": "Active"
     },
     {
       "id": 2,
-      "name": "Men's Running Shoes",
+      "name": "Casual Sneakers",
+      "description": "Comfortable casual sneakers for daily wear.",
       "price": 150.0,
-      "currency": "SAR",
-      "mainCategory": "Shoes",
-      "subCategory": "Sportswear",
-      "description": "Comfortable running shoes for daily training.",
-      "images": ["shoes1.jpg", "shoes2.jpg"],
+      "mainImage": "sneakers_main.jpg",
+      "secondaryImages": ["sneakers_side.jpg", "sneakers_interior.jpg"],
       "addOns": [
         {
+          "name": "Colors",
+          "options": ["#4B0082", "#FF6347", "#00FF00"],
+          "inputType": "colorPicker"
+        },
+        {
           "name": "Sizes",
-          "options": ["40", "41", "42", "43", "44"],
+          "options": ["38", "39", "40", "41", "42"],
           "inputType": "dropdown"
         },
         {
-          "name": "Colors",
-          "options": ["#FFFFFF", "#000000", "#FF4500"],
-          "inputType": "colorPicker"
+          "name": "Condition",
+          "options": ["New"],
+          "inputType": "radio"
         }
       ],
+      "mainCategory": {
+        "id": 2,
+        "name": "Shoes"
+      },
+      "subCategory": {
+        "id": 4,
+        "name": "Casual",
+        "mainCategoryId": 2
+      },
       "status": "Active"
     },
     {
       "id": 3,
-      "name": "Smart Watch",
-      "price": 500.0,
-      "currency": "SAR",
-      "mainCategory": "Electronics",
-      "subCategory": "Wearables",
-      "description": "A feature-packed smartwatch for fitness and productivity.",
-      "images": ["watch1.jpg", "watch2.jpg", "watch3.jpg"],
+      "name": "Smartwatch Series 5",
+      "description": "A high-end smartwatch with fitness tracking and notifications.",
+      "price": 1200.0,
+      "mainImage": "smartwatch_main.jpg",
+      "secondaryImages": ["smartwatch_side.jpg", "smartwatch_back.jpg"],
       "addOns": [
         {
-          "name": "Strap Color",
-          "options": ["#000000", "#D2B48C", "#708090"],
+          "name": "Colors",
+          "options": ["#000000", "#FFFFFF", "#FFD700"],
           "inputType": "colorPicker"
         },
         {
           "name": "Condition",
-          "options": ["New", "Refurbished"],
+          "options": ["New"],
           "inputType": "radio"
         }
       ],
+      "mainCategory": {
+        "id": 3,
+        "name": "Electronics"
+      },
+      "subCategory": {
+        "id": 5,
+        "name": "Wearables",
+        "mainCategoryId": 3
+      },
       "status": "Active"
     },
     {
       "id": 4,
-      "name": "Kids Backpack",
-      "price": 120.0,
-      "currency": "SAR",
-      "mainCategory": "Bags",
-      "subCategory": "Backpacks",
-      "description": "Lightweight and durable backpack for kids.",
-      "images": ["backpack1.jpg", "backpack2.jpg"],
+      "name": "Wooden Coffee Table",
+      "description": "A stylish wooden coffee table for your living room.",
+      "price": 500.0,
+      "mainImage": "coffeetable_main.jpg",
+      "secondaryImages": ["coffeetable_side.jpg", "coffeetable_closeup.jpg"],
       "addOns": [
         {
-          "name": "Colors",
-          "options": ["#FF69B4", "#1E90FF", "#FFD700"],
-          "inputType": "colorPicker"
+          "name": "Finish",
+          "options": ["Matte", "Glossy"],
+          "inputType": "dropdown"
         },
         {
-          "name": "Age Group",
-          "options": ["Kids", "Teenagers"],
-          "inputType": "checkbox"
+          "name": "Condition",
+          "options": ["New"],
+          "inputType": "radio"
         }
       ],
+      "mainCategory": {
+        "id": 4,
+        "name": "Furniture"
+      },
+      "subCategory": {
+        "id": 6,
+        "name": "Living Room",
+        "mainCategoryId": 4
+      },
       "status": "Active"
     },
     {
       "id": 5,
-      "name": "Wooden Coffee Table",
-      "price": 800.0,
-      "currency": "SAR",
-      "mainCategory": "Furniture",
-      "subCategory": "Living Room",
-      "description": "Minimalist wooden coffee table with a natural finish.",
-      "images": ["table1.jpg", "table2.jpg"],
+      "name": "Backpack for Travel",
+      "description": "Durable backpack perfect for long journeys and travel.",
+      "price": 250.0,
+      "mainImage": "backpack_main.jpg",
+      "secondaryImages": ["backpack_side.jpg", "backpack_inside.jpg"],
       "addOns": [
         {
-          "name": "Wood Finish",
-          "options": ["Natural", "Dark Brown", "Black"],
+          "name": "Colors",
+          "options": ["#0000FF", "#FF5733", "#FFFFFF"],
+          "inputType": "colorPicker"
+        },
+        {
+          "name": "Sizes",
+          "options": ["Small", "Medium", "Large"],
           "inputType": "dropdown"
+        },
+        {
+          "name": "Condition",
+          "options": ["New", "Used"],
+          "inputType": "radio"
         }
       ],
+      "mainCategory": {
+        "id": 1,
+        "name": "Bags"
+      },
+      "subCategory": {
+        "id": 2,
+        "name": "Backpacks",
+        "mainCategoryId": 1
+      },
       "status": "Active"
     }
   ]

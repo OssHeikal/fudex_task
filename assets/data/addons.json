@@ -1,5 +1,5 @@
 {
-  "addons": [
+  "data": [
     {
       "name": "Colors",
       "options": ["#FF0000", "#0000FF", "#008000", "#000000", "#FFFFFF"],
