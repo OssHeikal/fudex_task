@@ -62,7 +62,7 @@ class _CustomSelectableListState<T> extends State<CustomSelectableList<T>> {
                 .paddingTop(4)
                 .center()
                 .paddingSymmetric(20, 4)
-                .setContainerToView(radius: 4, color: bgColor, borderColor: borderColor)
+                .setInkContainerToView(radius: 4, color: bgColor, borderColor: borderColor)
                 .onTap(() => _onSelected(index), borderRadius: 4.0.borderRadius);
           },
         );

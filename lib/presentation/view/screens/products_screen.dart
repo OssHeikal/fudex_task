@@ -5,6 +5,7 @@ import 'package:fudex/core/resources/resources.dart';
 import 'package:fudex/core/utils/toaster_utils.dart';
 import 'package:fudex/core/widgets/custom_app_bar.dart';
 import 'package:fudex/core/widgets/custom_button.dart';
+import 'package:fudex/core/widgets/empty_view.dart';
 import 'package:fudex/core/widgets/vertical_list_view.dart';
 import 'package:fudex/presentation/controller/products/products_cubit.dart';
 import 'package:fudex/presentation/view/widgets/product_tile.dart';
@@ -46,6 +47,13 @@ class ProductsScreen extends StatelessWidget {
                   padding: AppSize.screenPadding.edgeInsetsAll,
                   itemCount: state.products.length,
                   itemBuilder: (context, index) => ProductTile(product: state.products[index]),
+                ).visible(
+                  state.products.isNotEmpty,
+                  fallback: EmptyView(
+                    icon: Icon(Icons.search_off_rounded, size: 72, color: context.disabledButtonColor),
+                    title: 'Result Not Found',
+                    subtitle: 'No products found for your search, try again with different keywords.',
+                  ),
                 ),
               );
             },

@@ -35,5 +35,6 @@ class ProductsCubit extends Cubit<ProductsState> {
     final List<ProductModel> products = state.products;
     products.removeWhere((element) => element.id == productId);
     emit(state.copyWith(products: products, deleteStatus: CubitStatus.success));
+    emit(state.copyWith(deleteStatus: CubitStatus.init));
   }
 }
