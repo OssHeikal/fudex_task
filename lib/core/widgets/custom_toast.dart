@@ -27,7 +27,7 @@ class CustomToast extends StatelessWidget {
             text,
             maxLines: 2,
             style: TextStylesManager.font.s14.medium.setColor(Colors.white),
-          ).fit(alignment: Alignment.center).flexible()
+          ).paddingTop(6).fit(alignment: Alignment.center).flexible()
         ],
       ),
     ).paddingHorizontal(AppSize.screenPadding);

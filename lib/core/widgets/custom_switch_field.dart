@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fudex/core/extensions/all_extensions.dart';
 
-import '../resources/resources.dart';
-
 class CustomSwitchField extends StatefulWidget {
   const CustomSwitchField({super.key, this.title, required this.value, this.onChanged});
 

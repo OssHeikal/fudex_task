@@ -2,7 +2,6 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fudex/data/model/addon_model.dart';
 import 'package:fudex/presentation/controller/add_ons/add_ons_cubit.dart';
 import 'package:fudex/presentation/controller/categories/categories_cubit.dart';
 import 'package:fudex/presentation/controller/products/products_cubit.dart';

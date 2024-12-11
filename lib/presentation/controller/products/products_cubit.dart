@@ -23,4 +23,17 @@ class ProductsCubit extends Cubit<ProductsState> {
       (data) => emit(state.copyWith(status: CubitStatus.success, products: data)),
     );
   }
+
+  void addProduct(ProductModel product) {
+    final List<ProductModel> products = state.products;
+    products.add(product);
+    emit(state.copyWith(products: products));
+  }
+
+  void removeProduct(int productId) {
+    emit(state.copyWith(deleteStatus: CubitStatus.loading));
+    final List<ProductModel> products = state.products;
+    products.removeWhere((element) => element.id == productId);
+    emit(state.copyWith(products: products, deleteStatus: CubitStatus.success));
+  }
 }

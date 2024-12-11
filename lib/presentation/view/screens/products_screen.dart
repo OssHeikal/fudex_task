@@ -1,10 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fudex/core/extensions/all_extensions.dart';
 import 'package:fudex/core/resources/resources.dart';
+import 'package:fudex/core/utils/toaster_utils.dart';
 import 'package:fudex/core/widgets/custom_app_bar.dart';
 import 'package:fudex/core/widgets/custom_button.dart';
 import 'package:fudex/core/widgets/custom_delete_button.dart';
@@ -21,30 +20,35 @@ class ProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar.build(titleText: 'Products', removeBack: true),
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CustomButton(
-            label: 'Add Product',
-            onPressed: () {},
-          )
-              .withSafeArea(minimum: AppSize.screenPadding.edgeInsetsHorizontal)
-              .paddingTop(24)
-              .setContainerToView(color: context.scaffoldBackgroundColor, shadows: ShadowStyles.bottomSheetShadow),
-        ],
+    return BlocListener<ProductsCubit, ProductsState>(
+      listener: (context, state) => state.deleteStatus.listen(
+        onSuccess: () => Toaster.showToast("Product deleted successfully", isError: false),
       ),
-      body: BlocBuilder<ProductsCubit, ProductsState>(
-        builder: (context, state) {
-          return state.status.build(
-            onSuccess: VerticalListView(
-              padding: AppSize.screenPadding.edgeInsetsAll,
-              itemCount: state.products.length,
-              itemBuilder: (context, index) => ProductTile(product: state.products[index]),
-            ),
-          );
-        },
+      child: Scaffold(
+        appBar: CustomAppBar.build(titleText: 'Products', removeBack: true),
+        bottomNavigationBar: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomButton(
+              label: 'Add Product',
+              onPressed: () {},
+            )
+                .withSafeArea(minimum: AppSize.screenPadding.edgeInsetsHorizontal)
+                .paddingTop(24)
+                .setContainerToView(color: context.scaffoldBackgroundColor, shadows: ShadowStyles.bottomSheetShadow),
+          ],
+        ),
+        body: BlocBuilder<ProductsCubit, ProductsState>(
+          builder: (context, state) {
+            return state.status.build(
+              onSuccess: VerticalListView(
+                padding: AppSize.screenPadding.edgeInsetsAll,
+                itemCount: state.products.length,
+                itemBuilder: (context, index) => ProductTile(product: state.products[index]),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -61,8 +65,20 @@ class ProductTile extends StatelessWidget {
       children: [
         Row(
           children: [
-            const CustomSwitchField(value: true, title: "status").expand(),
-            const CustomDeleteButton(),
+            CustomSwitchField(
+              value: true,
+              title: "status",
+              onChanged: (value) {
+                if (value) {
+                  Toaster.showToast("Product is active", isError: false);
+                } else {
+                  Toaster.showToast("Product is inactive", isError: false);
+                }
+              },
+            ).expand(),
+            CustomDeleteButton(
+              onDeleted: () => context.read<ProductsCubit>().removeProduct(product.id),
+            ),
           ],
         ).paddingAll(16),
         const Divider(height: 0),

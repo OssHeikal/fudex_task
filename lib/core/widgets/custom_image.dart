@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fudex/core/extensions/context_extensions.dart';
 
-import '../resources/constants.dart';
 import 'shimmer_widget.dart';
 
 class CustomImage extends StatelessWidget {
