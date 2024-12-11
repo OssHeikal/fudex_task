@@ -7,7 +7,7 @@ import '../../core/utils/error_handler.dart';
 import '../datasource/datasource.dart';
 
 abstract class Repository {
-  DataResponse<List<ProductModel>> getProducts();
+  DataResponse<List<ProductModel>> getProducts({String? search, int? categoryId});
   DataResponse<List<CategoryModel>> getMainCategories();
   DataResponse<List<CategoryModel>> getSubCategories(int id);
   DataResponse<List<AddonModel>> getAddOns();
@@ -20,8 +20,8 @@ class RepositoryImpl implements Repository {
   RepositoryImpl(this.datasource);
 
   @override
-  DataResponse<List<ProductModel>> getProducts() async {
-    return datasource.getProducts().map(productModelFromJson);
+  DataResponse<List<ProductModel>> getProducts({String? search, int? categoryId}) async {
+    return datasource.getProducts().map((body)=> productModelFromJson(body, search, categoryId));
   }
 
   @override

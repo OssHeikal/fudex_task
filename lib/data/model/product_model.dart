@@ -4,8 +4,13 @@ import 'package:fudex/data/model/addon_model.dart';
 import '../../core/resources/enums/products_status_enum.dart';
 import 'category_model.dart';
 
-List<ProductModel> productModelFromJson(dynamic json) {
-  return (json['data'] as List).map((e) => ProductModel.fromJson(e)).toList();
+List<ProductModel> productModelFromJson(dynamic json, String? search, int? categoryId) {
+  final products = (json['data'] as List).map((e) => ProductModel.fromJson(e));
+  return products.where((product) {
+    final matchesSearch = search == null || product.name.toLowerCase().contains(search.toLowerCase());
+    final matchesCategory = categoryId == null || product.mainCategory.id == categoryId;
+    return matchesSearch && matchesCategory;
+  }).toList();
 }
 
 class ProductModel extends Equatable {

@@ -11,6 +11,7 @@ class CustomTextField extends StatefulWidget {
   const CustomTextField({
     super.key,
     this.prefixIcon,
+    this.prefix,
     this.controller,
     this.hint,
     this.title,
@@ -29,6 +30,7 @@ class CustomTextField extends StatefulWidget {
     this.isRequired = true,
   });
   final String? prefixIcon;
+  final Widget? prefix;
   final TextEditingController? controller;
   final String? hint;
   final String? title;
@@ -97,11 +99,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     maxLines: widget.maxLines,
                     suffixIcon: widget.suffixIcon,
                     labelStyle: context.bodyLarge.s12,
-                    prefixIcon: widget.prefixIcon?.toSvg(
-                      colorFilter: enabled ? context.iconColor.colorFilter : context.hintTextStyle.color!.colorFilter,
-                      width: AppSize.iconNormal,
-                      height: AppSize.iconNormal,
-                    ),
+                    prefixIcon: widget.prefix ??
+                        widget.prefixIcon?.toSvg(
+                          colorFilter:
+                              enabled ? context.iconColor.colorFilter : context.hintTextStyle.color!.colorFilter,
+                          width: AppSize.iconNormal,
+                          height: AppSize.iconNormal,
+                        ),
                     onChanged: (value) {
                       widget.onChanged?.call(value);
                       formState.didChange(value);

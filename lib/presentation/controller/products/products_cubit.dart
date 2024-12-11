@@ -12,12 +12,12 @@ part 'products_state.dart';
 class ProductsCubit extends Cubit<ProductsState> {
   final Repository _repository;
   ProductsCubit(this._repository) : super(const ProductsState()) {
-    _getProducts();
+    getProducts();
   }
 
-  void _getProducts() async {
+  void getProducts({String? search, int? categoryId}) async {
     emit(state.copyWith(status: CubitStatus.loading));
-    final response = await _repository.getProducts();
+    final response = await _repository.getProducts(search: search, categoryId: categoryId);
     response.fold(
       (failure) => emit(state.copyWith(status: CubitStatus.failed, message: failure.message)),
       (data) => emit(state.copyWith(status: CubitStatus.success, products: data)),

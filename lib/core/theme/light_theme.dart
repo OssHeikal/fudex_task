@@ -80,7 +80,7 @@ class LightThemeColors {
   static Color dividerColor = greyShade[100]!;
   static Color border = greyShade[100]!;
   static Color disabledBorder = greyShade[400]!;
-  static Color inputFieldBorder = greyShade[200]!;
+  static Color inputFieldBorder = greyShade[100]!;
 
   // shadow
   static Color shadowBottomSheet = Colors.black.withOpacity(0.25);

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +11,7 @@ import 'close_icon_button.dart';
 
 enum DecorationType { underlined, outlined, filled }
 
-enum InputType { text, textAr, textEn, name, number, email, password, phone, url, price }
+enum InputType { text, textAr, textEn, name, number, email, password, phone, url, price, search }
 
 class CustomInputField extends StatefulWidget {
   const CustomInputField({
@@ -111,7 +112,6 @@ class CustomInputField extends StatefulWidget {
 
   const CustomInputField.underlined({
     super.key,
-    this.inputType = InputType.text,
     this.hasDropDown = false,
     this.text,
     this.textInputAction = TextInputAction.done,
@@ -157,7 +157,8 @@ class CustomInputField extends StatefulWidget {
     this.gradientBorder,
     this.inputFormatters,
     this.isRequired = false,
-  }) : decorationType = DecorationType.underlined;
+  })  : decorationType = DecorationType.underlined,
+        inputType = InputType.search;
 
   const CustomInputField.filled({
     super.key,
@@ -259,6 +260,56 @@ class CustomInputField extends StatefulWidget {
     this.isRequired = false,
   }) : decorationType = DecorationType.outlined;
 
+  const CustomInputField.search({
+    super.key,
+    this.hasDropDown = false,
+    this.text,
+    this.textInputAction = TextInputAction.done,
+    this.borderColor,
+    this.width,
+    this.onSubmitted,
+    this.height,
+    this.hint,
+    this.hintColor,
+    this.prefixIcon,
+    this.suffixIcon,
+    this.validator,
+    this.controller,
+    this.keyboardType,
+    this.isPassword = false,
+    this.enabled = true,
+    this.readOnly = false,
+    this.borderEnabled = true,
+    this.autoFocus = false,
+    this.smallSuffixIcon = false,
+    this.error = false,
+    this.isDense = false,
+    this.maxLines = 1,
+    this.borderRadius,
+    this.fillColor,
+    this.onChanged,
+    this.label,
+    this.title,
+    this.autovalidateMode,
+    this.contentPadding,
+    this.textAlign = TextAlign.start,
+    this.hintTextStyle,
+    this.labelStyle,
+    this.textStyle,
+    this.hintSize,
+    this.hasPoint = false,
+    this.onTap,
+    this.onEditingComplete,
+    this.inputDecoration,
+    this.focusNode,
+    this.initialValue,
+    this.background,
+    this.gradientBorder,
+    this.inputFormatters,
+    this.isRequired = false,
+  })  : decorationType = DecorationType.outlined,
+        inputType = InputType.search;
+
   @override
   State<CustomInputField> createState() => _CustomInputFieldState();
 }
@@ -269,53 +320,58 @@ class _CustomInputFieldState extends State<CustomInputField> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: obscure,
-      builder: (context, obscuredValue, _) {
-        return TextFormField(
-          controller: widget.controller,
-          initialValue: widget.initialValue,
-          // validator: widget.validator,
-          style: context.textTheme.bodyLarge?.regular.s12,
-          onFieldSubmitted: widget.onSubmitted,
-          textInputAction: widget.textInputAction,
-          cursorErrorColor: context.errorColor,
-          cursorColor: context.primaryColor,
-          enabled: widget.enabled,
-          readOnly: widget.readOnly,
-          keyboardType: _getKeyboardType(),
-          maxLines: widget.maxLines,
-          onChanged: widget.onChanged,
-          onTapOutside: (_) => FocusScope.of(context).unfocus(),
-          autofocus: widget.autoFocus,
-          obscureText: widget.inputType == InputType.password && obscuredValue,
-          enableSuggestions: widget.isPassword,
-          autocorrect: widget.isPassword,
-          autovalidateMode: widget.autovalidateMode ?? AutovalidateMode.onUserInteraction,
-          textAlign: widget.textAlign,
-          onEditingComplete: widget.onEditingComplete,
-          focusNode: widget.focusNode,
-          onTap: widget.onTap,
-          inputFormatters: _getInputFormatters(),
-          decoration: InputDecoration(
-            hintText: widget.hint,
-            labelText: widget.label,
-            isDense: widget.isDense,
-            fillColor: _getBackgroundColor(),
-            constraints: widget.height != null ? BoxConstraints(maxHeight: widget.height!) : null,
-            labelStyle: widget.labelStyle ?? context.hintTextStyle,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            hintStyle: TextStylesManager.font.regular.s12.ellipsis.setColor(LightThemeColors.hintText),
-            border: _buildInputBorder(borderColor: widget.borderColor),
-            focusedBorder: _buildInputBorder(borderColor: widget.borderColor ?? context.primaryColor),
-            enabledBorder: _buildInputBorder(borderColor: widget.borderColor ?? LightThemeColors.inputFieldBorder),
-            errorBorder: _buildInputBorder(borderColor: context.errorColor),
-            focusedErrorBorder: _buildInputBorder(borderColor: context.errorColor),
-            prefixIconConstraints: widget.smallSuffixIcon ? BoxConstraints(maxWidth: AppSize.iconNormal.sp) : null,
-            suffixIconConstraints: widget.smallSuffixIcon ? BoxConstraints(maxWidth: AppSize.iconNormal.sp) : null,
-            prefixIcon: widget.prefixIcon,
-            suffixIcon: _buildSuffixIcon(obscuredValue),
-          ),
-        ).setTitle(title: widget.title, titleStyle: widget.labelStyle ?? context.bodyLarge.s14.medium);
+      valueListenable: widget.controller ?? TextEditingController(),
+      builder: (context, value, _) {
+        return ValueListenableBuilder(
+          valueListenable: obscure,
+          builder: (context, obscuredValue, _) {
+            return TextFormField(
+              controller: widget.controller,
+              initialValue: widget.initialValue,
+              // validator: widget.validator,
+              style: context.textTheme.bodyLarge?.regular.s12,
+              onFieldSubmitted: widget.onSubmitted,
+              textInputAction: widget.textInputAction,
+              cursorErrorColor: context.errorColor,
+              cursorColor: context.primaryColor,
+              enabled: widget.enabled,
+              readOnly: widget.readOnly,
+              keyboardType: _getKeyboardType(),
+              maxLines: widget.maxLines,
+              onChanged: widget.onChanged,
+              onTapOutside: (_) => FocusScope.of(context).unfocus(),
+              autofocus: widget.autoFocus,
+              obscureText: widget.inputType == InputType.password && obscuredValue,
+              enableSuggestions: widget.isPassword,
+              autocorrect: widget.isPassword,
+              autovalidateMode: widget.autovalidateMode ?? AutovalidateMode.onUserInteraction,
+              textAlign: widget.textAlign,
+              onEditingComplete: widget.onEditingComplete,
+              focusNode: widget.focusNode,
+              onTap: widget.onTap,
+              inputFormatters: _getInputFormatters(),
+              decoration: InputDecoration(
+                hintText: widget.hint,
+                labelText: widget.label,
+                isDense: widget.isDense,
+                fillColor: _getBackgroundColor(),
+                constraints: widget.height != null ? BoxConstraints(maxHeight: widget.height!) : null,
+                labelStyle: widget.labelStyle ?? context.hintTextStyle,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                hintStyle: TextStylesManager.font.regular.s12.ellipsis.setColor(LightThemeColors.hintText),
+                border: _buildInputBorder(borderColor: widget.borderColor),
+                focusedBorder: _buildInputBorder(borderColor: widget.borderColor ?? context.primaryColor),
+                enabledBorder: _buildInputBorder(borderColor: widget.borderColor ?? LightThemeColors.inputFieldBorder),
+                errorBorder: _buildInputBorder(borderColor: context.errorColor),
+                focusedErrorBorder: _buildInputBorder(borderColor: context.errorColor),
+                prefixIconConstraints: widget.smallSuffixIcon ? BoxConstraints(maxWidth: AppSize.iconNormal.sp) : null,
+                suffixIconConstraints: widget.smallSuffixIcon ? BoxConstraints(maxWidth: AppSize.iconNormal.sp) : null,
+                prefixIcon: _buildPrefixIcon() ?? widget.prefixIcon,
+                suffixIcon: _buildSuffixIcon(obscuredValue),
+              ),
+            ).setTitle(title: widget.title, titleStyle: widget.labelStyle ?? context.bodyLarge.s14.medium);
+          },
+        );
       },
     );
   }
@@ -365,9 +421,19 @@ class _CustomInputFieldState extends State<CustomInputField> {
         : Icon(Icons.visibility, color: LightThemeColors.hintText).onTap(() => obscure.value = !obscuredValue);
   }
 
+  Widget? _buildPrefixIcon() {
+    if (widget.inputType == InputType.search) {
+      return Icon(CupertinoIcons.search, size: 16, color: context.iconColorDisabled);
+    }
+    return null;
+  }
+
   Widget? _buildClearIcon() {
-    if (widget.controller == null) return null;
-    return CloseIconButton(onPressed: () => widget.controller!.clear());
+    if ((widget.controller?.text ?? 's').isEmpty) return null;
+    return CloseIconButton(onPressed: () {
+      widget.controller!.clear();
+      widget.onChanged?.call('');
+    });
   }
 
   TextInputType? _getKeyboardType() {
