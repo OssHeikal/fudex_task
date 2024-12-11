@@ -11,9 +11,11 @@ part 'categories_state.dart';
 @injectable
 class CategoriesCubit extends Cubit<CategoriesState> {
   final Repository _repository;
-  CategoriesCubit(this._repository) : super(const CategoriesState());
+  CategoriesCubit(this._repository) : super(const CategoriesState()) {
+    _getMainCategories();
+  }
 
-  void getMainCategories() async {
+  void _getMainCategories() async {
     emit(state.copyWith(status: CubitStatus.loading));
     final response = await _repository.getMainCategories();
     response.fold(

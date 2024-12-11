@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FontConstants {
   const FontConstants._();
-  static const String fontFamily = "Poppins";
+  static const String fontFamily = "Tajawal";
 }
 
 class FontWeightManager {

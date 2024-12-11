@@ -5,7 +5,7 @@
       "name": "Leather Handbag",
       "description": "A stylish leather handbag perfect for everyday use.",
       "price": 300.0,
-      "mainImage": "handbag_main.jpg",
+      "mainImage": "https://picsum.photos/88/95",
       "secondaryImages": ["handbag_side.jpg", "handbag_interior.jpg"],
       "addOns": [
         {
@@ -15,7 +15,7 @@
         },
         {
           "name": "Sizes",
-          "options": ["Small", "Medium", "Large"],
+          "options": ["S", "M", "L"],
           "inputType": "dropdown"
         },
         {
@@ -40,7 +40,7 @@
       "name": "Casual Sneakers",
       "description": "Comfortable casual sneakers for daily wear.",
       "price": 150.0,
-      "mainImage": "sneakers_main.jpg",
+      "mainImage": "https://picsum.photos/65/70",
       "secondaryImages": ["sneakers_side.jpg", "sneakers_interior.jpg"],
       "addOns": [
         {
@@ -50,7 +50,7 @@
         },
         {
           "name": "Sizes",
-          "options": ["38", "39", "40", "41", "42"],
+          "options": ["S", "M", "L", "XL", "XXL"],
           "inputType": "dropdown"
         },
         {
@@ -75,12 +75,12 @@
       "name": "Smartwatch Series 5",
       "description": "A high-end smartwatch with fitness tracking and notifications.",
       "price": 1200.0,
-      "mainImage": "smartwatch_main.jpg",
+      "mainImage": "https://picsum.photos/80/85",
       "secondaryImages": ["smartwatch_side.jpg", "smartwatch_back.jpg"],
       "addOns": [
         {
           "name": "Colors",
-          "options": ["#000000", "#FFFFFF", "#FFD700"],
+          "options": ["#000000", "#FF32DA", "#FFD700"],
           "inputType": "colorPicker"
         },
         {
@@ -105,7 +105,7 @@
       "name": "Wooden Coffee Table",
       "description": "A stylish wooden coffee table for your living room.",
       "price": 500.0,
-      "mainImage": "coffeetable_main.jpg",
+      "mainImage": "https://picsum.photos/85/80",
       "secondaryImages": ["coffeetable_side.jpg", "coffeetable_closeup.jpg"],
       "addOns": [
         {
@@ -135,17 +135,17 @@
       "name": "Backpack for Travel",
       "description": "Durable backpack perfect for long journeys and travel.",
       "price": 250.0,
-      "mainImage": "backpack_main.jpg",
+      "mainImage": "https://picsum.photos/85/90",
       "secondaryImages": ["backpack_side.jpg", "backpack_inside.jpg"],
       "addOns": [
         {
           "name": "Colors",
-          "options": ["#0000FF", "#FF5733", "#FFFFFF"],
+          "options": ["#0000FF", "#FF5733", "#FF0000"],
           "inputType": "colorPicker"
         },
         {
           "name": "Sizes",
-          "options": ["Small", "Medium", "Large"],
+          "options": ["S", "M", "L"],
           "inputType": "dropdown"
         },
         {

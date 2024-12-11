@@ -8,16 +8,18 @@ import 'theme_manager.dart';
 class LightThemeColors {
   const LightThemeColors._();
   // Primary Colors
-  static const Color primary = Color(0xFFDB1D4A);
+  static const Color primary = Color(0xFF28A6FD);
+
+  static const Color secondary = Color(0xFF1C5CF2);
 
   // grey shades
-  static const int _greyValue = 0xFF303030;
+  static const int _greyValue = 0xFF010001;
   static MaterialColor greyShade = const MaterialColor(
     _greyValue,
     <int, Color>{
-      100: Color(0xFFD9D9D9),
-      200: Color(0xFFBFBFBF),
-      300: Color(0xFF808080),
+      100: Color(0xFFCECECE),
+      200: Color(0xFFA9A9A9),
+      300: Color(0xFF777777),
       400: Color(0xFF666666),
       500: Color(_greyValue),
       600: Color(0xFF000000),
@@ -81,7 +83,7 @@ class LightThemeColors {
   static Color inputFieldBorder = greyShade[200]!;
 
   // shadow
-  static Color shadowBottomSheet = Colors.black.withOpacity(0.1);
+  static Color shadowBottomSheet = Colors.black.withOpacity(0.25);
   static Color shadow = Colors.black.withOpacity(0.08);
 
   // mask color
@@ -189,8 +191,8 @@ class LightTheme {
 
         // Title
         titleLarge: TextStylesManager.font.copyWith(color: LightThemeColors.primary),
-        titleMedium: TextStylesManager.font.copyWith(color: LightThemeColors.onPrimary),
-        titleSmall: TextStylesManager.font.copyWith(),
+        titleMedium: TextStylesManager.font.copyWith(color: LightThemeColors.secondary),
+        titleSmall: TextStylesManager.font.copyWith(color: LightThemeColors.onPrimary),
 
         // Body
         bodyLarge: TextStylesManager.font.copyWith(color: LightThemeColors.greyShade[600]),

@@ -11,9 +11,11 @@ part 'add_ons_state.dart';
 @injectable
 class AddOnsCubit extends Cubit<AddOnsState> {
   final Repository _repository;
-  AddOnsCubit(this._repository) : super(const AddOnsState());
+  AddOnsCubit(this._repository) : super(const AddOnsState()) {
+    _getAddOns();
+  }
 
-  void getAddOns() async {
+  void _getAddOns() async {
     emit(state.copyWith(status: CubitStatus.loading));
     final response = await _repository.getAddOns();
     response.fold(

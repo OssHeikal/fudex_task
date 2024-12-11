@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:fudex/core/extensions/all_extensions.dart';
 import 'package:fudex/core/widgets/custom_dialog.dart';
 
@@ -12,7 +11,7 @@ class CustomDeleteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(CupertinoIcons.trash, color: context.errorColor, size: 16).paddingAll(4).onTap(() {
+    return Icon(CupertinoIcons.trash, color: context.errorColor, size: 20).paddingAll(4).onTap(() {
       context.showDialog(
         CustomDialog(
           isDestructive: true,

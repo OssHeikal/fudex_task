@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../theme/light_theme.dart';
 
 class TextStylesManager {
   const TextStylesManager._();
-  static TextStyle font = const TextStyle();
+  static TextStyle font = GoogleFonts.tajawal();
 }
 
 class ShadowStyles {
@@ -12,18 +13,18 @@ class ShadowStyles {
   static List<BoxShadow> bottomSheetShadow = [
     BoxShadow(
       color: LightThemeColors.shadowBottomSheet,
-      blurRadius: 32,
-      offset: const Offset(4, 10),
+      blurRadius: 7,
+      offset: const Offset(0, 0),
       spreadRadius: 0,
     )
   ];
 
   static List<BoxShadow> cardShadow = [
-    const BoxShadow(
-      color: Color(0x23000000),
-      blurRadius: 8,
-      offset: Offset(0, 0),
-      spreadRadius: 0,
+    BoxShadow(
+      color: const Color(0xFF717171).withOpacity(0.15),
+      blurRadius: 10,
+      offset: const Offset(-2, 2),
+      spreadRadius: 1,
     )
   ];
 

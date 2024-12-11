@@ -126,6 +126,16 @@ extension StringExtension on String? {
     return this!.split(',').map((part) => int.tryParse(part.trim()) ?? 0).toList();
   }
 
+  Color toColor() {
+    if (isEmptyOrNull) {
+      return Colors.transparent;
+    } else if (this!.startsWith('#')) {
+      return Color(int.parse(validate().replaceAll('#', '0xFF')));
+    } else {
+      return Color(int.parse(validate()));
+    }
+  }
+
   /// Return double value of given string
   double toDouble({double defaultValue = 0.0}) {
     if (this == null) return defaultValue;

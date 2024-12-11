@@ -27,20 +27,25 @@ class _CustomSwitchFieldState extends State<CustomSwitchField> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        Text(widget.title ?? '', style: context.bodyMedium.s12),
         ValueListenableBuilder<bool>(
           valueListenable: _value,
           builder: (context, value, __) {
-            return Switch.adaptive(
-              value: value,
-              activeColor: context.successColor,
-              onChanged: (value) {
-                _value.value = value;
-                widget.onChanged?.call(value);
-              },
-            );
+            return FittedBox(
+              fit: BoxFit.fill,
+              child: Switch.adaptive(
+                value: value,
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                activeColor: context.successColor,
+                onChanged: (value) {
+                  _value.value = value;
+                  widget.onChanged?.call(value);
+                },
+              ),
+            ).withHeight(24);
           },
         ),
       ],
-    ).paddingHorizontal(14).setBorder(color: context.inputFieldBorderColor, radius: AppSize.inputBorderRadius);
+    );
   }
 }

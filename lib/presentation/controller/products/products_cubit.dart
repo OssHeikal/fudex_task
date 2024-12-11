@@ -11,5 +11,16 @@ part 'products_state.dart';
 @injectable
 class ProductsCubit extends Cubit<ProductsState> {
   final Repository _repository;
-  ProductsCubit(this._repository) : super(ProductsState());
+  ProductsCubit(this._repository) : super(const ProductsState()) {
+    _getProducts();
+  }
+
+  void _getProducts() async {
+    emit(state.copyWith(status: CubitStatus.loading));
+    final response = await _repository.getProducts();
+    response.fold(
+      (failure) => emit(state.copyWith(status: CubitStatus.failed, message: failure.message)),
+      (data) => emit(state.copyWith(status: CubitStatus.success, products: data)),
+    );
+  }
 }

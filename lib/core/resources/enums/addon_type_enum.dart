@@ -15,4 +15,6 @@ enum AddonInputType {
         return AddonInputType.dropdown;
     }
   }
+
+  bool get isColor => this == AddonInputType.colorPicker;
 }

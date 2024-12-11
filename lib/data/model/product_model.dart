@@ -12,7 +12,7 @@ class ProductModel extends Equatable {
   final int id;
   final String name;
   final String description;
-  final double price;
+  final num price;
   final String mainImage;
   final List<String> secondaryImages;
   final List<AddonModel> addOns;
@@ -38,7 +38,7 @@ class ProductModel extends Equatable {
       id: json['id'] as int,
       name: json['name'] as String,
       description: json['description'] as String,
-      price: json['price'] as double,
+      price: json['price'] as num,
       mainImage: json['mainImage'] as String,
       secondaryImages: List<String>.from(json['secondaryImages'] as List),
       addOns: List<AddonModel>.from(json['addOns'].map((x) => AddonModel.fromJson(x))),

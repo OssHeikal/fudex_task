@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fudex/main.dart';
 import 'package:intl/intl.dart';
 
 extension NumExt on num? {
@@ -66,7 +67,12 @@ extension NumExt on num? {
   /// ````\
   String formattedPrice({String? currency, int decimalDigits = 0}) {
     currency ??= 'SAR';
-    const locale = "ar_EG";
-    return NumberFormat.currency(name: '$currency ', decimalDigits: decimalDigits, locale: locale).format(validate());
+    final context = rootNavigatorKey.currentContext!;
+    final Locale locale = Localizations.localeOf(context);
+    return NumberFormat.currency(
+      name: '$currency ',
+      decimalDigits: decimalDigits,
+      locale: locale.languageCode,
+    ).format(validate());
   }
 }
