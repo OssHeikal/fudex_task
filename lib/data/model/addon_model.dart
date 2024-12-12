@@ -25,6 +25,19 @@ class AddonModel extends Equatable {
     );
   }
 
+  // copyWith method
+  AddonModel copyWith({
+    String? name,
+    List<String>? options,
+    AddonInputType? inputType,
+  }) {
+    return AddonModel(
+      name: name ?? this.name,
+      options: options ?? this.options,
+      inputType: inputType ?? this.inputType,
+    );
+  }
+
   @override
   List<Object?> get props => [name, options, inputType];
 }

@@ -2,18 +2,18 @@
   "data": [
     {
       "name": "Colors",
-      "options": ["#FF0000", "#0000FF", "#008000", "#000000", "#FFFFFF"],
+      "options": ["#FF0560", "#0450FF", "#E07730", "#013455", "#F34221"],
       "inputType": "colorPicker"
     },
     {
       "name": "Sizes",
       "options": ["S", "M", "L", "XL", "XXL"],
-      "inputType": "dropdown"
+      "inputType": "checkbox"
     },
     {
       "name": "Condition",
       "options": ["New", "Used", "Refurbished"],
-      "inputType": "radio"
+      "inputType": "checkbox"
     },
     {
       "name": "Age Group",

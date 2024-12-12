@@ -390,7 +390,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
       case DecorationType.filled:
         return OutlineInputBorder(
           borderRadius: widget.borderRadius ?? BorderRadius.circular(AppSize.inputBorderRadius).r,
-          borderSide: BorderSide.none,
+          borderSide: widget.borderColor == null ? BorderSide.none : BorderSide(color: widget.borderColor!),
         );
     }
   }
@@ -402,7 +402,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
       case DecorationType.outlined:
         return widget.background ?? context.scaffoldBackgroundColor;
       case DecorationType.filled:
-        return widget.background ?? LightThemeColors.background;
+        return widget.background ?? context.fillColor;
     }
   }
 
@@ -457,7 +457,7 @@ class _CustomInputFieldState extends State<CustomInputField> {
       case InputType.url:
         return TextInputType.url;
       case InputType.price:
-        return TextInputType.number;
+        return const TextInputType.numberWithOptions(decimal: true);
       default:
         return widget.keyboardType;
     }
@@ -473,6 +473,8 @@ class _CustomInputFieldState extends State<CustomInputField> {
         return [FilteringTextInputFormatter.digitsOnly];
       case InputType.phone:
         return [FilteringTextInputFormatter.allow(RegExp('[0-9]'))];
+      case InputType.price:
+        return [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}'))];
       default:
         return widget.inputFormatters;
     }

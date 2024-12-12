@@ -8,8 +8,11 @@ import 'package:fudex/core/widgets/custom_button.dart';
 import 'package:fudex/core/widgets/empty_view.dart';
 import 'package:fudex/core/widgets/vertical_list_view.dart';
 import 'package:fudex/presentation/controller/products/products_cubit.dart';
+import 'package:fudex/presentation/view/screens/product_details_screen.dart';
 import 'package:fudex/presentation/view/widgets/product_tile.dart';
 import 'package:fudex/presentation/view/widgets/products_bottom_widget.dart';
+
+import '../../../core/resources/constants.dart';
 
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
@@ -33,13 +36,10 @@ class ProductsScreen extends StatelessWidget {
             children: [
               CustomButton(
                 label: 'Add Product',
-                onPressed: () {},
-              )
-                  .withSafeArea(minimum: AppSize.screenPadding.edgeInsetsHorizontal)
-                  .paddingTop(24)
-                  .setContainerToView(color: context.scaffoldBackgroundColor, shadows: ShadowStyles.bottomSheetShadow),
+                onPressed: () => context.push(const ProductDetailsScreen()),
+              ).setHero(AppConstants.mainButtonTag),
             ],
-          ),
+          ).toBottomNavBar(),
           body: BlocBuilder<ProductsCubit, ProductsState>(
             builder: (context, state) {
               return state.status.build(

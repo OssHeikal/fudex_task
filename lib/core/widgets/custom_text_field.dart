@@ -27,7 +27,7 @@ class CustomTextField extends StatefulWidget {
     this.suffixIcon,
     this.inputFormatters,
     this.inputType = InputType.text,
-    this.isRequired = true,
+    this.isRequired = false,
   });
   final String? prefixIcon;
   final Widget? prefix;
@@ -82,16 +82,15 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   duration: 200.milliseconds,
                   padding: 1.edgeInsetsAll,
                   decoration: BoxDecoration(borderRadius: AppSize.inputBorderRadius.borderRadius),
-                  child: CustomInputField.outlined(
+                  child: CustomInputField.filled(
                     isRequired: widget.isRequired,
                     inputType: widget.inputType,
                     readOnly: widget.readOnly,
                     height: widget.height,
                     hint: widget.hint,
-                    label: widget.title,
+                    title: widget.title,
                     focusNode: widget.focusNode ?? _focusNode,
                     isPassword: widget.isPassword,
-                    background: context.scaffoldBackgroundColor,
                     borderColor: _borderColor(formState, enabled, context),
                     controller: widget.controller,
                     inputFormatters: widget.inputFormatters,
@@ -133,8 +132,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Color _borderColor(FormFieldState<String> formState, bool enabled, BuildContext context) {
     if (formState.hasError) {
       return context.errorColor;
-    } else if (enabled) {
-      return context.primaryBorder;
     } else {
       return context.inputFieldBorderColor;
     }
@@ -146,7 +143,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         if (widget.validator != null) {
           return (_) => widget.validator!(widget.controller!.text);
         } else if (widget.isRequired) {
-          return (_) => Validator.validateEmpty(widget.controller!.text);
+          return (_) => Validator.validateEmpty(widget.controller?.text);
         }
     }
     return null;

@@ -13,8 +13,8 @@ class SelectImageField extends StatefulWidget {
     this.validator,
     this.onImageSelected,
     this.isLoading = false,
-    this.size = 200,
-    this.iconSize = 72,
+    this.size = 120,
+    this.iconSize = 24,
     this.padding = 65,
   });
 
@@ -64,7 +64,7 @@ class _SelectImageFieldState extends State<SelectImageField> {
                   height: widget.size.sp,
                   width: widget.size.sp,
                   fit: BoxFit.cover,
-                ).clipRRect(1000);
+                ).clipRRect(6);
               } else {
                 return Column(
                   children: [
@@ -77,19 +77,18 @@ class _SelectImageFieldState extends State<SelectImageField> {
                                     height: widget.size.sp,
                                     width: widget.size.sp,
                                     fit: BoxFit.cover,
-                                  ).clipRRect(1000)
-                                : Icon(Icons.camera, size: widget.iconSize.sp, color: context.iconColorDisabled)
-                                    .setContainerToView(
-                                    color: context.primaryContainerColor,
-                                    padding: widget.padding,
-                                    radius: 1000,
-                                  ))
+                                  ).withDottedBorder(padding: 6.edgeInsetsAll)
+                                : Icon(
+                                    Icons.add_circle_outline,
+                                    size: widget.iconSize.sp,
+                                    color: context.primaryColor,
+                                  ).withDottedBorder(padding: 52.edgeInsetsAll))
                             .animationSwitch();
                       },
                     ).onTap(() {
                       if (widget.isLoading) return;
                       _onPhotoPressed(formState);
-                    }, borderRadius: 100.borderRadius),
+                    }, borderRadius: 6.borderRadius),
                     8.gap,
                     if (formState.errorText != null) Text(formState.errorText!, style: context.errorStyle),
                   ],

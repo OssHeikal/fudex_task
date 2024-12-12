@@ -102,7 +102,7 @@ class OverlayUtils {
     required String message,
   }) {
     return showDialog(
-        barrierDismissible: false,
+        barrierDismissible: true,
         context: rootNavigatorKey.currentContext!,
         builder: (BuildContext context) {
           return AlertDialog(

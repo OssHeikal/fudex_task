@@ -16,6 +16,8 @@ import '../../data/repository/repositories.dart' as _i280;
 import '../../presentation/controller/add_ons/add_ons_cubit.dart' as _i505;
 import '../../presentation/controller/categories/categories_cubit.dart'
     as _i398;
+import '../../presentation/controller/product_details/product_details_cubit.dart'
+    as _i196;
 import '../../presentation/controller/products/products_cubit.dart' as _i1025;
 
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -29,6 +31,7 @@ _i174.GetIt $initGetIt(
     environment,
     environmentFilter,
   );
+  gh.factory<_i196.ProductDetailsCubit>(() => _i196.ProductDetailsCubit());
   gh.lazySingleton<_i511.Datasource>(() => _i511.DatasourceImpl());
   gh.lazySingleton<_i280.Repository>(
       () => _i280.RepositoryImpl(gh<_i511.Datasource>()));

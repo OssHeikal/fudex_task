@@ -126,14 +126,18 @@ extension StringExtension on String? {
     return this!.split(',').map((part) => int.tryParse(part.trim()) ?? 0).toList();
   }
 
-  Color toColor() {
-    if (isEmptyOrNull) {
-      return Colors.transparent;
-    } else if (this!.startsWith('#')) {
-      return Color(int.parse(validate().replaceAll('#', '0xFF')));
-    } else {
-      return Color(int.parse(validate()));
-    }
+  bool get isColor {
+    final hexColorRegex = RegExp(r'^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$');
+    return hexColorRegex.hasMatch(validate());
+  }
+
+  Color? toColor() {
+    if (!isColor) return null;
+
+    String hex = validate().replaceFirst('#', '');
+    if (hex.length == 6) hex = 'FF$hex';
+
+    return Color(int.parse(hex, radix: 16));
   }
 
   /// Return double value of given string

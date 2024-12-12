@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -133,7 +134,7 @@ extension WidgetExtension on Widget {
     Widget? titleIcon,
     double? fontSize,
     TextStyle? titleStyle,
-    double gap = 8,
+    double gap = 4,
     double titlePadding = 0,
   }) {
     final context = rootNavigatorKey.currentContext!;
@@ -407,6 +408,13 @@ extension WidgetExtension on Widget {
       );
     }
   }
+
+  Widget toBottomNavBar() {
+    final context = rootNavigatorKey.currentContext!;
+    return withSafeArea(minimum: AppSize.screenPadding.edgeInsetsHorizontal)
+        .paddingTop(24)
+        .setContainerToView(color: context.scaffoldBackgroundColor, shadows: ShadowStyles.bottomSheetShadow);
+  }
 }
 
 extension PaddingExtension on Widget {
@@ -499,6 +507,7 @@ extension LayoutExtensions on Widget {
   }
 
   Widget withListView({
+    Key? key,
     Axis scrollDirection = Axis.vertical,
     bool reverse = false,
     bool primary = true,
@@ -507,6 +516,7 @@ extension LayoutExtensions on Widget {
     ScrollPhysics? physics,
   }) {
     return ListView(
+      key: key,
       scrollDirection: scrollDirection,
       reverse: reverse,
       primary: primary,
@@ -514,6 +524,23 @@ extension LayoutExtensions on Widget {
       padding: padding ?? EdgeInsets.symmetric(horizontal: AppSize.screenPadding, vertical: 16.h),
       physics: physics,
       children: [this],
+    );
+  }
+
+  Widget withDottedBorder({
+    Color? color,
+    double strokeWidth = 1,
+    double radius = 6,
+    EdgeInsets? padding,
+  }) {
+    final context = rootNavigatorKey.currentContext!;
+    return DottedBorder(
+      borderType: BorderType.RRect,
+      radius: Radius.circular(radius),
+      dashPattern: const [8, 4],
+      color: color ?? context.variantBorderColor,
+      padding: padding ?? EdgeInsets.zero,
+      child: this,
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:fudex/core/resources/enums/addon_type_enum.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../core/resources/enums/cubit_status_enum.dart';

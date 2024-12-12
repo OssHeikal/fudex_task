@@ -7,5 +7,10 @@ class AppConstants {
 
   static const String subCategories = '$basePath/subcategories.json';
 
-  static const String addOns = '$basePath/add_ons.json';
+  static const String addOns = '$basePath/addons.json';
+
+  static const String mainButtonTag = 'main-button-tag';
 }
+
+
+

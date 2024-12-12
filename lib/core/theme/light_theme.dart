@@ -61,6 +61,8 @@ class LightThemeColors {
   static Color secondaryContainer = onPrimaryShade[500]!;
   static Color disabledContainer = greyShade[200]!;
   static Color disabledButton = greyShade[200]!;
+  static Color inputField = greyShade[200]!.withOpacity(.12);
+
   // validation Surface Colors
 
   // Text Colors
@@ -291,7 +293,7 @@ class LightTheme {
           borderSide: BorderSide.none,
         ),
         filled: true,
-        fillColor: LightThemeColors.primaryContainer,
+        fillColor: LightThemeColors.inputField,
       ),
     );
   }

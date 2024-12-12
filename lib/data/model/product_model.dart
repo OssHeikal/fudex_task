@@ -22,7 +22,7 @@ class ProductModel extends Equatable {
   final List<String> secondaryImages;
   final List<AddonModel> addOns;
   final CategoryModel mainCategory;
-  final CategoryModel subCategory;
+  final CategoryModel subcategory;
   final ProductsStatus status;
 
   const ProductModel({
@@ -34,7 +34,7 @@ class ProductModel extends Equatable {
     required this.secondaryImages,
     required this.addOns,
     required this.mainCategory,
-    required this.subCategory,
+    required this.subcategory,
     required this.status,
   });
 
@@ -48,7 +48,7 @@ class ProductModel extends Equatable {
       secondaryImages: List<String>.from(json['secondaryImages'] as List),
       addOns: List<AddonModel>.from(json['addOns'].map((x) => AddonModel.fromJson(x))),
       mainCategory: CategoryModel.fromJson(json['mainCategory']),
-      subCategory: CategoryModel.fromJson(json['subCategory']),
+      subcategory: CategoryModel.fromJson(json['subCategory']),
       status: ProductsStatus.fromString(json['status'] as String),
     );
   }
@@ -62,7 +62,7 @@ class ProductModel extends Equatable {
         secondaryImages = const [],
         addOns = const [],
         mainCategory = const CategoryModel.empty(),
-        subCategory = const CategoryModel.empty(),
+        subcategory = const CategoryModel.empty(),
         status = ProductsStatus.inactive;
 
   @override
@@ -75,7 +75,7 @@ class ProductModel extends Equatable {
         secondaryImages,
         addOns,
         mainCategory,
-        subCategory,
+        subcategory,
         status,
       ];
 }

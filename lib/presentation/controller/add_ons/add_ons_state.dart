@@ -11,6 +11,10 @@ class AddOnsState extends Equatable {
   final List<AddonModel> addons;
   final String message;
 
+  List<String> getAddonOptions(String name) {
+    return addons.where((element) => element.name == name).map((e) => e.options).expand((element) => element).toList();
+  }
+
   AddOnsState copyWith({
     CubitStatus? status,
     List<AddonModel>? addons,

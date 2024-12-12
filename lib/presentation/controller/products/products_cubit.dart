@@ -25,7 +25,7 @@ class ProductsCubit extends Cubit<ProductsState> {
   }
 
   void addProduct(ProductModel product) {
-    final List<ProductModel> products = state.products;
+    final List<ProductModel> products = List.from(state.products);
     products.add(product);
     emit(state.copyWith(products: products));
   }

@@ -34,7 +34,6 @@ class MediaServices {
 
   static handelPermission() async {
     late PermissionStatus status;
-
     status = await Permission.photos.request();
     if (status.isDenied || status.isPermanentlyDenied) {
       await OverlayUtils.openSettingPermissionDialog(message: 'You need to grant permission to access photos');

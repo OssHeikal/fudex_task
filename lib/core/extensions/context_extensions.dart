@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/overlay_utils.dart';
@@ -93,5 +94,5 @@ extension ContextExtensions on BuildContext {
   void pop<T>([T? result]) => Navigator.of(this).pop(result);
 
   // push
-  Future<T?> push<T>(Widget page) => Navigator.of(this).push<T>(MaterialPageRoute(builder: (_) => page));
+  Future<T?> push<T>(Widget page) => Navigator.of(this).push<T>(CupertinoPageRoute(builder: (_) => page));
 }
