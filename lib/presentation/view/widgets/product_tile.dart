@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,6 +12,8 @@ import 'package:fudex/core/widgets/custom_switch_field.dart';
 import 'package:fudex/data/model/product_model.dart';
 import 'package:fudex/presentation/controller/products/products_cubit.dart';
 import 'package:fudex/presentation/view/widgets/add_on_options_list.dart';
+
+import '../screens/product_details_screen.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile({super.key, required this.product});
@@ -41,13 +45,24 @@ class ProductTile extends StatelessWidget {
         const Divider(height: 0),
         Row(
           children: [
-            CustomImage(
-              imageUrl: product.mainImage,
-              width: 90.r,
-              height: 90.r,
-              fit: BoxFit.cover,
-              borderRadius: 4.borderRadius,
-            ),
+            if (product.mainImage.startsWith("http"))
+              CustomImage(
+                imageUrl: product.mainImage,
+                width: 90.r,
+                height: 90.r,
+                fit: BoxFit.cover,
+                borderRadius: 4.borderRadius,
+              )
+            else
+              Image.file(
+                File(product.mainImage),
+                width: 90.r,
+                height: 90.r,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(Icons.error);
+                },
+              ).clipRRect(6),
             12.gap,
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,10 +80,12 @@ class ProductTile extends StatelessWidget {
           ],
         ).paddingAll(16.sp),
       ],
-    ).setInkContainerToView(
-      radius: 6.r,
-      shadows: ShadowStyles.cardShadow,
-      color: context.scaffoldBackgroundColor,
-    );
+    )
+        .setInkContainerToView(
+          radius: 6.r,
+          shadows: ShadowStyles.cardShadow,
+          color: context.scaffoldBackgroundColor,
+        )
+        .onTap(() => context.push(ProductDetailsScreen(product: product)));
   }
 }

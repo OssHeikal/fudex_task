@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["addonslength", "fudex"]
+  "cSpell.words": ["addonslength", "fudex"],
+  "java.configuration.updateBuildConfiguration": "interactive"
 }

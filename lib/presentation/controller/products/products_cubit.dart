@@ -26,8 +26,14 @@ class ProductsCubit extends Cubit<ProductsState> {
 
   void addProduct(ProductModel product) {
     final List<ProductModel> products = List.from(state.products);
-    products.add(product);
-    emit(state.copyWith(products: products));
+    final index = products.indexWhere((element) => element.id == product.id);
+    if (index != -1) {
+      products[index] = product;
+      emit(state.copyWith(products: products));
+    } else {
+      products.add(product);
+      emit(state.copyWith(products: products));
+    }
   }
 
   void removeProduct(int productId) {

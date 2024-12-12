@@ -11,12 +11,12 @@ import 'package:fudex/core/service_locator/injection.dart';
 import 'package:fudex/core/widgets/custom_multiple_selection_field.dart';
 import 'package:fudex/core/widgets/custom_selection_field.dart';
 import 'package:fudex/core/widgets/custom_text_field.dart';
-import 'package:fudex/core/widgets/select_multiple_images_field.dart';
 import 'package:fudex/data/model/addon_model.dart';
 import 'package:fudex/data/model/category_model.dart';
 import 'package:fudex/data/model/product_model.dart';
 import 'package:fudex/presentation/controller/categories/categories_cubit.dart';
 import 'package:fudex/presentation/view/widgets/addons_list_view.dart';
+import 'package:fudex/presentation/view/widgets/custom_images_selection.dart';
 
 import '../../../core/resources/constants.dart';
 import '../../../core/resources/enums/products_status_enum.dart';
@@ -24,7 +24,7 @@ import '../../../core/utils/toaster_utils.dart';
 import '../../../core/widgets/custom_app_bar.dart';
 import '../../../core/widgets/custom_button.dart';
 import '../../../core/widgets/custom_input_field.dart';
-import '../../../core/widgets/select_image_field.dart';
+import '../../controller/add_ons/add_ons_cubit.dart';
 import '../../controller/product_details/product_details_cubit.dart';
 import '../../controller/products/products_cubit.dart';
 
@@ -38,6 +38,7 @@ class ProductDetailsScreen extends HookWidget {
     final formKey = useMemoized(() => GlobalKey<FormState>());
 
     final categoriesCubit = context.read<CategoriesCubit>();
+    final addonsCubit = context.read<AddOnsCubit>();
 
     final nameController = useTextEditingController(text: isEdit ? product!.name : '');
     final priceController = useTextEditingController(text: isEdit ? product!.price.toString() : '');
@@ -46,9 +47,9 @@ class ProductDetailsScreen extends HookWidget {
     final selectedCategory = useState(product?.mainCategory);
     final selectedSubcategory = useState(product?.subcategory);
 
-    final selectedAddon = useState(product?.addOns);
+    final selectedAddon = useState<List<AddonModel>>([]);
 
-    final selectedAddonsOptions = useState<List<AddonModel>>([]);
+    final selectedAddonsOptions = useState<List<AddonModel>>(product?.addOns ?? []);
 
     final mainImage = useState<File?>(null);
     final secondaryImages = useState<List<File?>?>(null);
@@ -62,6 +63,16 @@ class ProductDetailsScreen extends HookWidget {
         return null;
       },
       [selectedCategory.value],
+    );
+
+    useEffect(
+      () {
+        if (isEdit) {
+          selectedAddon.value = product!.addOns;
+        }
+        return null;
+      },
+      [],
     );
 
     return BlocProvider(
@@ -86,7 +97,7 @@ class ProductDetailsScreen extends HookWidget {
                     formKey.currentState!.save();
                     if (formKey.currentState!.validate()) {
                       final newProduct = ProductModel(
-                        id: Random().nextInt(1000),
+                        id: product?.id ?? Random().nextInt(1000),
                         name: nameController.text,
                         mainImage: mainImage.value?.path ?? '',
                         secondaryImages: secondaryImages.value?.map((e) => e?.path ?? '').toList() ?? [],
@@ -162,15 +173,18 @@ class ProductDetailsScreen extends HookWidget {
                   ).visible(selectedCategory.value != null),
                   16.gap.visible(selectedCategory.value != null),
                   AddonsField(initialAddons: selectedAddon.value, onChanged: (value) => selectedAddon.value = value),
-                  if (selectedAddon.value != null) ...[
+                  ...[
                     16.gap,
-                    ...selectedAddon.value!.map((addon) {
+                    ...selectedAddon.value.map((addon) {
                       final List<String>? selectedOptions = selectedAddonsOptions.value
                           .firstWhereOrNull((element) => element.name == addon.name)
                           ?.options;
                       return CustomMultipleSelectionField<String>(
                         title: addon.name,
-                        items: addon.options,
+                        items: addonsCubit.state.addons
+                                .firstWhereOrNull((element) => element.name == addon.name)
+                                ?.options ??
+                            [],
                         itemBuilder: (context, item) {
                           if (addon.inputType == AddonInputType.colorPicker) {
                             return Container(
@@ -204,40 +218,5 @@ class ProductDetailsScreen extends HookWidget {
         },
       ),
     );
-  }
-}
-
-class CustomImagesSelection extends StatelessWidget {
-  const CustomImagesSelection({
-    super.key,
-    this.images,
-    this.mainImageUrl,
-    this.onImageSelected,
-    this.onImagesSelected,
-  });
-
-  final List<String>? images;
-  final String? mainImageUrl;
-  final void Function(File?)? onImageSelected;
-  final void Function(List<File?>?)? onImagesSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SelectImageField(
-          imageUrl: mainImageUrl,
-          onImageSelected: (file) {
-            onImageSelected?.call(file);
-          },
-        ),
-        16.gap,
-        SelectMultipleImagesField(
-          onImagesSelected: (images) {
-            onImagesSelected?.call(images);
-          },
-        ),
-      ],
-    ).withDottedBorder(padding: 16.edgeInsetsAll);
   }
 }

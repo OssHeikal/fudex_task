@@ -59,12 +59,21 @@ class _SelectImageFieldState extends State<SelectImageField> {
             valueListenable: _imageUrl,
             builder: (context, url, child) {
               if (url != null && _image.value == null) {
-                return Image.network(
-                  url,
-                  height: widget.size.sp,
-                  width: widget.size.sp,
-                  fit: BoxFit.cover,
-                ).clipRRect(6);
+                if (url.startsWith('http')) {
+                  return Image.network(
+                    url,
+                    height: widget.size.sp,
+                    width: widget.size.sp,
+                    fit: BoxFit.cover,
+                  ).clipRRect(6);
+                } else {
+                  return Image.file(
+                    File(url),
+                    height: widget.size.sp,
+                    width: widget.size.sp,
+                    fit: BoxFit.cover,
+                  ).clipRRect(6);
+                }
               } else {
                 return Column(
                   children: [

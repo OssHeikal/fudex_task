@@ -43,7 +43,7 @@ class CustomMultipleSelectionField<T> extends HookWidget {
           title: title,
           suffixIcon: const Icon(Icons.arrow_drop_down),
           onTap: () async {
-            List<T> selectedOptions = [];
+            List<T> selectedOptions = initialItems ?? [];
             await context.showBottomSheet(
               CustomBottomSheet(
                 title: 'Select Addons for Product',

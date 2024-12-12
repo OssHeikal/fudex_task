@@ -35,10 +35,10 @@ class _SelectMultipleImagesFieldState extends State<SelectMultipleImagesField> {
 
   @override
   Widget build(BuildContext context) {
-    return FormField<List<File>>(
+    return FormField<List<File>?>(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
-        if (_imageUrls.value.isNotEmpty || value!.isNotEmpty) {
+        if (_imageUrls.value.isNotEmpty || _images.value.isNotEmpty) {
           return null;
         }
         return 'Please select at least one image';
@@ -57,12 +57,21 @@ class _SelectMultipleImagesFieldState extends State<SelectMultipleImagesField> {
                         valueListenable: _imageUrls,
                         builder: (context, urls, child) {
                           if (urls.length > i) {
-                            return Image.network(
-                              urls[i],
-                              height: widget.size.h,
-                              width: widget.size.h,
-                              fit: BoxFit.cover,
-                            ).clipRRect(6);
+                            if (urls[i].startsWith('http')) {
+                              return Image.network(
+                                urls[i],
+                                height: widget.size.h,
+                                width: widget.size.h,
+                                fit: BoxFit.cover,
+                              ).clipRRect(6);
+                            } else {
+                              return Image.file(
+                                File(urls[i]),
+                                height: widget.size.h,
+                                width: widget.size.h,
+                                fit: BoxFit.cover,
+                              ).clipRRect(6);
+                            }
                           } else {
                             return ValueListenableBuilder(
                               valueListenable: _images,
